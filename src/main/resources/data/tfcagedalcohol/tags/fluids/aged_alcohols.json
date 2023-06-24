@@ -1,0 +1,14 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "tfcagedalcohol:aged_beer",
+    "tfcagedalcohol:aged_cider",
+    "tfcagedalcohol:aged_rum",
+    "tfcagedalcohol:aged_sake",
+    "tfcagedalcohol:aged_vodka",
+    "tfcagedalcohol:aged_whiskey",
+    "tfcagedalcohol:aged_corn_whiskey",
+    "tfcagedalcohol:aged_rye_whiskey"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": {
+    "tag": "tfcagedalcohol:aged_alcohols"
+  },
+  "thirst": 15,
+  "intoxication": 2000
+}
