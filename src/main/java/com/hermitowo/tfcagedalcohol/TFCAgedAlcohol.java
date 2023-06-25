@@ -3,8 +3,6 @@ package com.hermitowo.tfcagedalcohol;
 import com.hermitowo.tfcagedalcohol.common.AgedAlcoholFluids;
 import com.hermitowo.tfcagedalcohol.common.Registers;
 import com.mojang.logging.LogUtils;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
@@ -55,11 +53,12 @@ public class TFCAgedAlcohol
             FluidStack fluidStack = cap.getFluidInTank(0);
             if (!fluidStack.isEmpty())
             {
-                event.getToolTip().add(new TranslatableComponent(fluidStack.getTranslationKey()).withStyle(ChatFormatting.GRAY));
-                var fluid = AgedAlcoholFluids.AGED_ALCOHOL.inverse().keySet().stream().filter(f ->
-                    f.getSource() == fluidStack.getFluid()
-                ).findAny();
-                fluid.ifPresent(f -> event.getToolTip().add(AgedAlcoholFluids.AGED_ALCOHOL.inverse().get(f).getTooltip()));
+                AgedAlcoholFluids.AGED_ALCOHOL
+                    .entrySet()
+                    .stream()
+                    .filter(entry -> entry.getValue().getSource() == fluidStack.getFluid())
+                    .findAny()
+                    .map(entry -> event.getToolTip().add(entry.getKey().getTooltip()));
             }
         });
     }

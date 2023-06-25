@@ -12,7 +12,7 @@ def generate(rm: ResourceManager):
         rm.fluid_tag('aged_alcohols', fluid)
 
     for alcohol in ALCOHOLS:
-        barrel_sealed_recipe(rm, 'aged_' + alcohol, 'Aged ' + alcohol.capitalize(), 576000, '100 tfc:' + alcohol, '100 tfcagedalcohol:aged_' + alcohol)
+        barrel_sealed_recipe(rm, 'aged_' + alcohol, 'Ageing ' + alcohol.capitalize(), 576000, '100 tfc:' + alcohol, '100 tfcagedalcohol:aged_' + alcohol)
 
     rm.fluid_tag('tfc:drinkables', '#tfcagedalcohol:aged_alcohols')
     rm.fluid_tag('minecraft:water', '#tfcagedalcohol:aged_alcohols')

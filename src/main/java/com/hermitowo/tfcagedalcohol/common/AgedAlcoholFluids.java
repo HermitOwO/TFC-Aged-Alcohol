@@ -1,8 +1,7 @@
 package com.hermitowo.tfcagedalcohol.common;
 
+import java.util.Map;
 import java.util.Optional;
-import com.google.common.collect.BiMap;
-import com.google.common.collect.HashBiMap;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
@@ -16,17 +15,18 @@ import static net.dries007.tfc.common.fluids.TFCFluids.*;
 
 public class AgedAlcoholFluids
 {
-    public static final BiMap<AgedAlcohol, FlowingFluidRegistryObject<MixingFluid>> AGED_ALCOHOL;
+    public static final Map<AgedAlcohol, FlowingFluidRegistryObject<MixingFluid>> AGED_ALCOHOL;
 
     static
     {
-        var oneWayMap = Helpers.mapOfKeys(AgedAlcohol.class, (fluid) -> Registers.registerFluid(fluid.getId(), "flowing_" + fluid.getId(), properties ->
+        AGED_ALCOHOL = Helpers.mapOfKeys(AgedAlcohol.class, (fluid) -> Registers.registerFluid(fluid.getId(), "flowing_" + fluid.getId(), properties ->
                 properties.block(Registers.AGED_ALCOHOL.get(fluid)).bucket(Registers.FLUID_BUCKETS.get(fluid)),
-            FluidAttributes.builder(WATER_STILL, WATER_FLOW).translationKey("fluid.tfcagedalcohol." + fluid.getId())
-                .color(fluid.getColor()).overlay(WATER_OVERLAY)
+            FluidAttributes.builder(WATER_STILL, WATER_FLOW)
+                .translationKey("fluid.tfcagedalcohol." + fluid.getId())
+                .color(fluid.getColor())
+                .overlay(WATER_OVERLAY)
                 .sound(SoundEvents.BUCKET_FILL, SoundEvents.BUCKET_EMPTY),
             MixingFluid.Source::new, MixingFluid.Flowing::new));
-        AGED_ALCOHOL = HashBiMap.create(oneWayMap);
     }
 
     public static Optional<AgedAlcohol> getAlcohol(IFluidHandlerItem handler)
@@ -34,8 +34,11 @@ public class AgedAlcoholFluids
         FluidStack fluidStack = handler.getFluidInTank(0);
         if (!fluidStack.isEmpty())
         {
-            var fluid = AGED_ALCOHOL.inverse().keySet().stream().filter(f -> f.getSource().getSource() == fluidStack.getFluid()).findAny();
-            return fluid.map(f -> AGED_ALCOHOL.inverse().get(f));
+            return AGED_ALCOHOL
+                .entrySet()
+                .stream()
+                .filter(entry -> entry.getValue().getSource().getSource() == fluidStack.getFluid())
+                .map(Map.Entry::getKey).findAny();
         }
         return Optional.empty();
     }

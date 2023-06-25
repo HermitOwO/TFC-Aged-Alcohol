@@ -24,12 +24,12 @@
   "block.tfcagedalcohol.fluid.aged_rye_whiskey": "Aged Rye Whiskey",
   "item.tfcagedalcohol.bucket.aged_rye_whiskey": "Aged Rye Whiskey Bucket",
   "fluid.tfcagedalcohol.aged_rye_whiskey": "Aged Rye Whiskey",
-  "tfc.recipe.barrel.tfcagedalcohol.barrel.aged_beer": "Aged Beer",
-  "tfc.recipe.barrel.tfcagedalcohol.barrel.aged_cider": "Aged Cider",
-  "tfc.recipe.barrel.tfcagedalcohol.barrel.aged_rum": "Aged Rum",
-  "tfc.recipe.barrel.tfcagedalcohol.barrel.aged_sake": "Aged Sake",
-  "tfc.recipe.barrel.tfcagedalcohol.barrel.aged_vodka": "Aged Vodka",
-  "tfc.recipe.barrel.tfcagedalcohol.barrel.aged_whiskey": "Aged Whiskey",
-  "tfc.recipe.barrel.tfcagedalcohol.barrel.aged_corn_whiskey": "Aged Corn Whiskey",
-  "tfc.recipe.barrel.tfcagedalcohol.barrel.aged_rye_whiskey": "Aged Rye Whiskey"
+  "tfc.recipe.barrel.tfcagedalcohol.barrel.aged_beer": "Ageing Beer",
+  "tfc.recipe.barrel.tfcagedalcohol.barrel.aged_cider": "Ageing Cider",
+  "tfc.recipe.barrel.tfcagedalcohol.barrel.aged_rum": "Ageing Rum",
+  "tfc.recipe.barrel.tfcagedalcohol.barrel.aged_sake": "Ageing Sake",
+  "tfc.recipe.barrel.tfcagedalcohol.barrel.aged_vodka": "Ageing Vodka",
+  "tfc.recipe.barrel.tfcagedalcohol.barrel.aged_whiskey": "Ageing Whiskey",
+  "tfc.recipe.barrel.tfcagedalcohol.barrel.aged_corn_whiskey": "Ageing Corn Whiskey",
+  "tfc.recipe.barrel.tfcagedalcohol.barrel.aged_rye_whiskey": "Ageing Rye Whiskey"
 }

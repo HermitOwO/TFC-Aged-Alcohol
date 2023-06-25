@@ -5,6 +5,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffectUtil;
 import net.minecraft.world.effect.MobEffects;
 
 import net.dries007.tfc.util.Helpers;
@@ -67,30 +68,19 @@ public enum AgedAlcohol
     {
         return switch (effectPotency + 1)
             {
-                case 1 -> "I";
-                case 2 -> "II";
-                case 3 -> "III";
-                default -> "";
+                case 2 -> " II " ;
+                case 3 -> " III ";
+                default -> " ";
             };
     }
 
     public Component getTooltip()
     {
-        return Helpers.literal(effect.getDisplayName().getString() + " " + (displayedPotency()) + " (" + toMinutes(effectDuration) + ")").withStyle(ChatFormatting.GRAY);
+        return Helpers.literal(effect.getDisplayName().getString() + displayedPotency() + "(" + MobEffectUtil.formatDuration(getEffectInstance(), 1) + ")").withStyle(ChatFormatting.BLUE);
     }
 
     public MobEffectInstance getEffectInstance()
     {
         return new MobEffectInstance(this.effect, this.effectDuration, this.effectPotency);
     }
-
-    private String toMinutes(int ticks)
-    {
-        int seconds = ticks / 20;
-        int minutes = seconds / 60;
-        int extraSeconds = seconds % 60;
-
-        return minutes + ":" + extraSeconds;
-    }
-
 }
