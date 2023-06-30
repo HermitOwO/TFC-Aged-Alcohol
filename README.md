@@ -12,4 +12,4 @@ Aged Corn Whiskey | Haste
 Aged Rye Whiskey | Haste
 Aged Whiskey | Haste II
 
-Effects can be tweaked in the server config.
+Effects can be tweaked via datapacks.
