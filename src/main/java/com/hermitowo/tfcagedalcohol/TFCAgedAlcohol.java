@@ -2,6 +2,7 @@ package com.hermitowo.tfcagedalcohol;
 
 import com.hermitowo.tfcagedalcohol.common.AgedAlcoholFluids;
 import com.hermitowo.tfcagedalcohol.common.Registers;
+import com.hermitowo.tfcagedalcohol.config.Config;
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -28,6 +29,7 @@ public class TFCAgedAlcohol
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         Registers.addRegistersToEventBus(eventBus);
+        Config.init();
 
         MinecraftForge.EVENT_BUS.addListener(this::onDrink);
 

@@ -1,42 +1,43 @@
 package com.hermitowo.tfcagedalcohol.common;
 
 import java.util.Locale;
-import net.minecraft.ChatFormatting;
+import com.hermitowo.tfcagedalcohol.config.Config;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffectUtil;
-import net.minecraft.world.effect.MobEffects;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import net.dries007.tfc.util.Helpers;
 
 public enum AgedAlcohol
 {
-    BEER(-3957193, MobEffects.ABSORPTION, 1, 24000),
+    BEER(-3957193, "minecraft:absorption", 1, 24000),
 
-    CIDER(-5198286, MobEffects.MOVEMENT_SPEED, 0, 6400),
-    RUM(-9567965, MobEffects.MOVEMENT_SPEED, 1, 3200),
+    CIDER(-5198286, "minecraft:speed", 0, 6400),
+    RUM(-9567965, "minecraft:speed", 1, 3200),
 
-    SAKE(-4728388, MobEffects.DAMAGE_RESISTANCE, 0, 6400),
-    VODKA(-2302756, MobEffects.DAMAGE_RESISTANCE, 1, 3200),
+    SAKE(-4728388, "minecraft:resistance", 0, 6400),
+    VODKA(-2302756, "minecraft:resistance", 1, 3200),
 
-    WHISKEY(-10995943, MobEffects.DIG_SPEED, 1, 3200),
-    CORN_WHISKEY(-2504777, MobEffects.DIG_SPEED, 0, 6400),
-    RYE_WHISKEY(-3703471, MobEffects.DIG_SPEED, 0, 6400);
+    WHISKEY(-10995943, "minecraft:haste", 1, 3200),
+    CORN_WHISKEY(-2504777, "minecraft:haste", 0, 6400),
+    RYE_WHISKEY(-3703471, "minecraft:haste", 0, 6400);
 
     private final String id;
     private final int color;
-    private final MobEffect effect;
-    private final int effectPotency;
-    private final int effectDuration;
+    private final String defaultEffect;
+    private final int defaultEffectAmplifier;
+    private final int defaultEffectDuration;
 
-    AgedAlcohol(int color, MobEffect effect, int effectPotency, int effectDuration)
+    AgedAlcohol(int color, String defaultEffect, int defaultEffectAmplifier, int defaultEffectDuration)
     {
         this.id = "aged_" + this.name().toLowerCase(Locale.ROOT);
         this.color = color;
-        this.effect = effect;
-        this.effectPotency = effectPotency;
-        this.effectDuration = effectDuration;
+        this.defaultEffect = defaultEffect;
+        this.defaultEffectAmplifier = defaultEffectAmplifier;
+        this.defaultEffectDuration = defaultEffectDuration;
     }
 
     public String getId()
@@ -49,38 +50,53 @@ public enum AgedAlcohol
         return this.color;
     }
 
+    public String getDefaultEffect()
+    {
+        return this.defaultEffect;
+    }
+
+    public int getDefaultEffectAmplifier()
+    {
+        return this.defaultEffectAmplifier;
+    }
+
+    public int getDefaultEffectDuration()
+    {
+        return this.defaultEffectDuration;
+    }
+
     public MobEffect getEffect()
     {
-        return effect;
+        return ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(Config.SERVER.agedAlcoholEffects.get(this).get()));
+    }
+
+    public int getEffectAmplifier()
+    {
+        return Config.SERVER.agedAlcoholEffectAmplifiers.get(this).get();
     }
 
     public int getEffectDuration()
     {
-        return effectDuration;
-    }
-
-    public int getEffectPotency()
-    {
-        return effectPotency;
+        return Config.SERVER.agedAlcoholEffectDurationInTicks.get(this).get();
     }
 
     public String displayedPotency()
     {
-        return switch (effectPotency + 1)
-            {
-                case 2 -> " II " ;
-                case 3 -> " III ";
-                default -> " ";
-            };
+        return switch (getEffectAmplifier() + 1)
+        {
+            case 2 -> " II ";
+            case 3 -> " III ";
+            default -> " ";
+        };
     }
 
     public Component getTooltip()
     {
-        return Helpers.literal(effect.getDisplayName().getString() + displayedPotency() + "(" + MobEffectUtil.formatDuration(getEffectInstance(), 1) + ")").withStyle(ChatFormatting.BLUE);
+        return Helpers.literal(getEffect().getDisplayName().getString() + displayedPotency() + "(" + MobEffectUtil.formatDuration(getEffectInstance(), 1) + ")").withStyle(getEffect().getCategory().getTooltipFormatting());
     }
 
     public MobEffectInstance getEffectInstance()
     {
-        return new MobEffectInstance(this.effect, this.effectDuration, this.effectPotency);
+        return new MobEffectInstance(getEffect(), getEffectDuration(), getEffectAmplifier());
     }
 }
