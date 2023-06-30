@@ -10,7 +10,7 @@ import net.dries007.tfc.util.Helpers;
 
 public class Config
 {
-    public static final ServerConfig SERVER = register(ModConfig.Type.SERVER, ServerConfig::new);
+    public static final ClientConfig CLIENT = register(ModConfig.Type.CLIENT, ClientConfig::new);
 
     public static void init() {}
 

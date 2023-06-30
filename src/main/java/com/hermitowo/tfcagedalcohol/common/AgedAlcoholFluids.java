@@ -1,11 +1,8 @@
 package com.hermitowo.tfcagedalcohol.common;
 
 import java.util.Map;
-import java.util.Optional;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraftforge.fluids.FluidAttributes;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 
 import net.dries007.tfc.common.fluids.FlowingFluidRegistryObject;
 import net.dries007.tfc.common.fluids.MixingFluid;
@@ -27,19 +24,5 @@ public class AgedAlcoholFluids
                 .overlay(WATER_OVERLAY)
                 .sound(SoundEvents.BUCKET_FILL, SoundEvents.BUCKET_EMPTY),
             MixingFluid.Source::new, MixingFluid.Flowing::new));
-    }
-
-    public static Optional<AgedAlcohol> getAlcohol(IFluidHandlerItem handler)
-    {
-        FluidStack fluidStack = handler.getFluidInTank(0);
-        if (!fluidStack.isEmpty())
-        {
-            return AGED_ALCOHOL
-                .entrySet()
-                .stream()
-                .filter(entry -> entry.getValue().getSource().getSource() == fluidStack.getFluid())
-                .map(Map.Entry::getKey).findAny();
-        }
-        return Optional.empty();
     }
 }
