@@ -8,6 +8,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import net.dries007.tfc.util.Helpers;
 
+@SuppressWarnings("SameParameterValue")
 public class Config
 {
     public static final ClientConfig CLIENT = register(ModConfig.Type.CLIENT, ClientConfig::new);

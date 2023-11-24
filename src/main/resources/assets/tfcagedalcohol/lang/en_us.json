@@ -31,5 +31,6 @@
   "tfc.recipe.barrel.tfcagedalcohol.barrel.aged_vodka": "Ageing Vodka",
   "tfc.recipe.barrel.tfcagedalcohol.barrel.aged_whiskey": "Ageing Whiskey",
   "tfc.recipe.barrel.tfcagedalcohol.barrel.aged_corn_whiskey": "Ageing Corn Whiskey",
-  "tfc.recipe.barrel.tfcagedalcohol.barrel.aged_rye_whiskey": "Ageing Rye Whiskey"
+  "tfc.recipe.barrel.tfcagedalcohol.barrel.aged_rye_whiskey": "Ageing Rye Whiskey",
+  "tfcagedalcohol.creative_tab.main": "TFC Aged Alcohol"
 }

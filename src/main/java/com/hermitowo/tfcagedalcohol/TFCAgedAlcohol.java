@@ -1,6 +1,9 @@
 package com.hermitowo.tfcagedalcohol;
 
+import com.hermitowo.tfcagedalcohol.client.ClientEvents;
 import com.hermitowo.tfcagedalcohol.client.ClientForgeEvents;
+import com.hermitowo.tfcagedalcohol.common.AgedAlcoholFluids;
+import com.hermitowo.tfcagedalcohol.common.CreativeTabs;
 import com.hermitowo.tfcagedalcohol.common.Registers;
 import com.hermitowo.tfcagedalcohol.config.Config;
 import com.mojang.logging.LogUtils;
@@ -19,12 +22,20 @@ public class TFCAgedAlcohol
 
     public TFCAgedAlcohol()
     {
-        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        Registers.addRegistersToEventBus(eventBus);
+        AgedAlcoholFluids.FLUIDS.register(bus);
+        AgedAlcoholFluids.FLUID_TYPES.register(bus);
+        Registers.BLOCKS.register(bus);
+        Registers.ITEMS.register(bus);
+        CreativeTabs.CREATIVE_TABS.register(bus);
+
         Config.init();
 
         if (FMLEnvironment.dist == Dist.CLIENT)
+        {
+            ClientEvents.init();
             ClientForgeEvents.init();
+        }
     }
 }

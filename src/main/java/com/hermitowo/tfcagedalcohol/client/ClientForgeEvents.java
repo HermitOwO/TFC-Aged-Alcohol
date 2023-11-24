@@ -3,18 +3,18 @@ package com.hermitowo.tfcagedalcohol.client;
 import com.hermitowo.tfcagedalcohol.common.AgedAlcoholFluids;
 import com.hermitowo.tfcagedalcohol.config.Config;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.Mth;
+import net.minecraft.util.StringUtil;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffectUtil;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 
 import net.dries007.tfc.util.Drinkable;
-import net.dries007.tfc.util.Helpers;
 
 public class ClientForgeEvents
 {
@@ -28,7 +28,7 @@ public class ClientForgeEvents
     private static void onTooltip(ItemTooltipEvent event)
     {
         ItemStack stack = event.getItemStack();
-        stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY).ifPresent(cap -> {
+        stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).ifPresent(cap -> {
             FluidStack fluidStack = cap.getFluidInTank(0);
             if (!fluidStack.isEmpty())
             {
@@ -54,7 +54,7 @@ public class ClientForgeEvents
     private static Component getTooltip(MobEffect effect, int duration, int amplifier)
     {
         MobEffectInstance effectInstance = new MobEffectInstance(effect, duration, amplifier);
-        return Helpers.literal(effect.getDisplayName().getString() + displayedPotency(amplifier) + "(" + MobEffectUtil.formatDuration(effectInstance, 1) + ")").withStyle(effect.getCategory().getTooltipFormatting());
+        return Component.literal(effect.getDisplayName().getString() + displayedPotency(amplifier) + "(" + formatDuration(effectInstance) + ")").withStyle(effect.getCategory().getTooltipFormatting());
     }
 
     private static String displayedPotency(int amplifier)
@@ -65,5 +65,10 @@ public class ClientForgeEvents
             case 3 -> " III ";
             default -> " ";
         };
+    }
+
+    private static String formatDuration(MobEffectInstance effect)
+    {
+        return StringUtil.formatTickDuration(Mth.floor(effect.getDuration()));
     }
 }

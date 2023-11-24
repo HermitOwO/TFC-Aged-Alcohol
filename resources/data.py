@@ -35,6 +35,8 @@ def generate(rm: ResourceManager):
     rm.fluid_tag('tfc:drinkables', '#tfcagedalcohol:aged_alcohols')
     rm.fluid_tag('minecraft:water', '#tfcagedalcohol:aged_alcohols')
 
+    rm.lang("tfcagedalcohol.creative_tab.main", "TFC Aged Alcohol")
+
 
 def fluid_stack(data_in: Json) -> Json:
     if isinstance(data_in, dict):
@@ -80,7 +82,7 @@ def water_based_fluid(rm: ResourceManager, name: str):
     rm.blockstate(('fluid', name)).with_block_model({'particle': 'minecraft:block/water_still'}, parent=None).with_lang(lang(name)).with_tag('all_fluids')
     rm.fluid_tag(name, 'tfcagedalcohol:%s' % name, 'tfcagedalcohol:flowing_%s' % name)
 
-    item = rm.custom_item_model(('bucket', name), 'forge:bucket', {
+    item = rm.custom_item_model(('bucket', name), 'forge:fluid_container', {
         'parent': 'forge:item/bucket',
         'fluid': 'tfcagedalcohol:%s' % name
     })

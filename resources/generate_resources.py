@@ -9,7 +9,6 @@ from mcresources.type_definitions import Json
 import data
 
 
-
 class ModificationLoggingResourceManager(ResourceManager):
 
     def write(self, path_parts: Sequence[str], data_in: Json):
@@ -47,6 +46,7 @@ def generate_all(rm: ResourceManager):
     data.generate(rm)
 
     rm.flush()
+
 
 if __name__ == '__main__':
     main()
