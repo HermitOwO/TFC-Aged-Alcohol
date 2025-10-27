@@ -1,0 +1,17 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": {
+    "fluid": "tfcagedalcohol:aged_beer"
+  },
+  "water": 15,
+  "intoxication": 2000,
+  "effects": [
+    {
+      "effect": "minecraft:absorption",
+      "duration": 6400,
+      "amplifier": 1,
+      "chance": 1.0
+    }
+  ],
+  "may_drink_when_full": true
+}

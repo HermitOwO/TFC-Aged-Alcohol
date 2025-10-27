@@ -2,12 +2,12 @@
   "__comment__": "This file was automatically created by mcresources",
   "type": "tfc:barrel_sealed",
   "input_fluid": {
-    "ingredient": "tfc:vodka",
+    "fluid": "tfc:rye_whiskey",
     "amount": 100
   },
   "output_fluid": {
-    "fluid": "tfcagedalcohol:aged_vodka",
+    "id": "tfcagedalcohol:aged_rye_whiskey",
     "amount": 100
   },
-  "duration": 576000
+  "duration": 691200
 }

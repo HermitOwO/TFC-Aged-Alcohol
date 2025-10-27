@@ -7,11 +7,12 @@ import com.hermitowo.tfcagedalcohol.common.CreativeTabs;
 import com.hermitowo.tfcagedalcohol.common.Registers;
 import com.hermitowo.tfcagedalcohol.config.Config;
 import com.mojang.logging.LogUtils;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.loading.FMLEnvironment;
 import org.slf4j.Logger;
 
 @Mod(TFCAgedAlcohol.MOD_ID)
@@ -20,9 +21,9 @@ public class TFCAgedAlcohol
     public static final String MOD_ID = "tfcagedalcohol";
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public TFCAgedAlcohol()
+    public TFCAgedAlcohol(ModContainer mod, IEventBus bus)
     {
-        final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+        mod.registerConfig(ModConfig.Type.CLIENT, Config.CLIENT.spec());
 
         AgedAlcoholFluids.FLUIDS.register(bus);
         AgedAlcoholFluids.FLUID_TYPES.register(bus);
@@ -30,11 +31,9 @@ public class TFCAgedAlcohol
         Registers.ITEMS.register(bus);
         CreativeTabs.CREATIVE_TABS.register(bus);
 
-        Config.init();
-
         if (FMLEnvironment.dist == Dist.CLIENT)
         {
-            ClientEvents.init();
+            ClientEvents.init(bus);
             ClientForgeEvents.init();
         }
     }

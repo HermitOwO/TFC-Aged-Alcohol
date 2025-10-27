@@ -1,26 +1,22 @@
 package com.hermitowo.tfcagedalcohol.config;
 
-import java.util.function.Function;
-import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
-import net.minecraftforge.common.ForgeConfigSpec.Builder;
+import java.util.function.Supplier;
 
-import static com.hermitowo.tfcagedalcohol.TFCAgedAlcohol.*;
+import net.dries007.tfc.config.BaseConfig;
 
-public class ClientConfig
+public class ClientConfig extends BaseConfig
 {
-    public final BooleanValue showEffectTooltipForAllDrinkables;
+    public final Supplier<Boolean> showEffectTooltipForAllDrinkables;
 
-    ClientConfig(Builder innerBuilder)
+    ClientConfig(ConfigBuilder builder)
     {
-        Function<String, Builder> builder = name -> innerBuilder.translation(MOD_ID + ".config.client." + name);
+        builder.push("display");
 
-        innerBuilder.push("display");
-
-        showEffectTooltipForAllDrinkables = builder.apply("showEffectTooltipForAllDrinkables").comment(
+        showEffectTooltipForAllDrinkables = builder.comment(
             "If false, only the effects of aged alcohol will be shown on fluid container items like jugs and buckets.",
             "Otherwise, effects like Thirst for Salt Water Ceramic Jug will also be shown"
         ).define("showEffectTooltipForAllDrinkables", false);
 
-        innerBuilder.pop();
+        builder.pop();
     }
 }
