@@ -22,7 +22,7 @@ val modId: String = "tfcagedalcohol"
 base {
     archivesName.set("TFCAgedAlcohol-$minecraftVersion")
     group = "com.hermitowo.tfcagedalcohol"
-    version = "2.2"
+    version = "2.3"
 }
 
 java {
@@ -94,7 +94,7 @@ minecraft {
 
             jvmArgs("-Xmx4G", "-Xms4G")
 
-            //jvmArg("-XX:+AllowEnhancedClassRedefinition")
+            jvmArg("-XX:+AllowEnhancedClassRedefinition")
 
             mods.create(modId) {
                 source(sourceSets.main.get())
