@@ -1,0 +1,19 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:barrel_sealed",
+  "input_fluid": {
+    "ingredient": "firmalife:mead",
+    "amount": 100
+  },
+  "output_fluid": {
+    "fluid": "tfcagedalcohol:aged_mead",
+    "amount": 100
+  },
+  "duration": 576000,
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "firmalife"
+    }
+  ]
+}

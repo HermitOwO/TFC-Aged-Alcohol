@@ -12,14 +12,15 @@ class Effect(NamedTuple):
 
 
 AGED_ALCOHOLS: Dict[str, Effect] = {
-    'aged_beer': Effect('absorption', 1, 24000),
+    'aged_beer': Effect('absorption', 1, 6400),
     'aged_cider': Effect('speed', 0, 6400),
     'aged_rum': Effect('speed', 1, 3200),
     'aged_sake': Effect('resistance', 0, 6400),
     'aged_vodka': Effect('resistance', 1, 3200),
     'aged_whiskey': Effect('haste', 1, 3200),
     'aged_corn_whiskey': Effect('haste', 0, 6400),
-    'aged_rye_whiskey': Effect('haste', 0, 6400)
+    'aged_rye_whiskey': Effect('haste', 0, 6400),
+    'aged_mead': Effect('regeneration', 0, 6400)
 }
 
 
@@ -31,6 +32,7 @@ def generate(rm: ResourceManager):
 
     for alcohol in ALCOHOLS:
         barrel_sealed_recipe(rm, 'aged_' + alcohol, 'Ageing ' + alcohol.capitalize(), 576000, '100 tfc:' + alcohol, '100 tfcagedalcohol:aged_' + alcohol)
+    barrel_sealed_recipe(rm, 'aged_mead', 'Ageing Mead', 576000, '100 firmalife:mead', '100 tfcagedalcohol:aged_mead', {'type': 'forge:mod_loaded', 'modid': 'firmalife'})
 
     rm.fluid_tag('tfc:drinkables', '#tfcagedalcohol:aged_alcohols')
     rm.fluid_tag('minecraft:water', '#tfcagedalcohol:aged_alcohols')
@@ -101,12 +103,12 @@ def drinkable(rm: ResourceManager, name_parts: utils.ResourceIdentifier, fluid: 
     })
 
 
-def barrel_sealed_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, translation: str, duration: int, input_fluid: Json, output_fluid: Json):
+def barrel_sealed_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, translation: str, duration: int, input_fluid: Json, output_fluid: Json, conditions: Optional[Json] = None):
     rm.recipe(('barrel', name_parts), 'tfc:barrel_sealed', {
         'input_fluid': fluid_stack_ingredient(input_fluid),
         'output_fluid': fluid_stack(output_fluid),
-        'duration': duration
-    })
+        'duration': duration,
+    }, conditions=conditions)
     res = utils.resource_location('tfcagedalcohol', name_parts)
     rm.lang('tfc.recipe.barrel.' + res.domain + '.barrel.' + res.path.replace('/', '.'), lang(translation))
 

@@ -11,6 +11,7 @@ val forgeVersion: String = "47.1.3"
 val parchmentVersion: String = "2023.09.03-1.20.1"
 val mixinVersion: String = "0.8.5"
 val tfcVersion: String = "6103204"
+val firmalifeVersion: String = "5280601"
 val jeiVersion: String = "15.2.0.27"
 val patchouliVersion: String = "1.20.1-81-FORGE"
 val jadeVersion: String = "4614153"
@@ -54,6 +55,9 @@ dependencies {
     minecraft("net.minecraftforge", "forge", version = "$minecraftVersion-$forgeVersion")
     implementation(fg.deobf("curse.maven:tfc-302973:$tfcVersion"))
 
+    // Firmalife
+    implementation(fg.deobf("curse.maven:firmalife-453394:$firmalifeVersion"))
+
     // JEI
     compileOnly(fg.deobf("mezz.jei:jei-$minecraftVersion-forge-api:$jeiVersion"))
     compileOnly(fg.deobf("mezz.jei:jei-$minecraftVersion-common-api:$jeiVersion"))
@@ -90,7 +94,7 @@ minecraft {
 
             jvmArgs("-Xmx4G", "-Xms4G")
 
-            jvmArg("-XX:+AllowEnhancedClassRedefinition")
+            //jvmArg("-XX:+AllowEnhancedClassRedefinition")
 
             mods.create(modId) {
                 source(sourceSets.main.get())
@@ -110,7 +114,7 @@ minecraft {
 }
 
 mixin {
-    add(sourceSets.main.get(), "TFCAgedAlcohol.refmap.json")
+    add(sourceSets.main.get(), "tfcagedalcohol.refmap.json")
 }
 
 tasks {

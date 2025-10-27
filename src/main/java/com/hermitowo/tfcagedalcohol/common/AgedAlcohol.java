@@ -11,7 +11,8 @@ public enum AgedAlcohol
     VODKA(-2302756),
     WHISKEY(-10995943),
     CORN_WHISKEY(-2504777),
-    RYE_WHISKEY(-3703471);
+    RYE_WHISKEY(-3703471),
+    MEAD(-3694808);
 
     private final String id;
     private final int color;

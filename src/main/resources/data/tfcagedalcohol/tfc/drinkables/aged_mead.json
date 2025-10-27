@@ -1,13 +1,13 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "ingredient": "tfcagedalcohol:aged_beer",
+  "ingredient": "tfcagedalcohol:aged_mead",
   "thirst": 15,
   "intoxication": 2000,
   "effects": [
     {
-      "type": "minecraft:absorption",
+      "type": "minecraft:regeneration",
       "duration": 6400,
-      "amplifier": 1
+      "amplifier": 0
     }
   ]
 }
