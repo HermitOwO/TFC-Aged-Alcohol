@@ -19,7 +19,7 @@ val patchouliVersion: String = "1.21.1-92-NEOFORGE"
 val tfcVersion: String = "4.0.0-beta"
 
 val modId: String = "tfcagedalcohol"
-val modVersion: String = "3.0"
+val modVersion: String = "3.1"
 val modJavaVersion: String = "21"
 val modIsInCI: Boolean = !modVersion.contains("-indev")
 val modDataOutput: String = "src/generated/resources"

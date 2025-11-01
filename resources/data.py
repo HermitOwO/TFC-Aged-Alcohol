@@ -31,8 +31,8 @@ def generate(rm: ResourceManager):
         drinkable(rm, '%s' % alcohol, 'tfcagedalcohol:%s' % alcohol, 15, 2000, may_drink_when_full=True, effects=[{'effect': 'minecraft:%s' % effect.type, 'duration': effect.duration, 'amplifier': effect.amplifier, 'chance': 1.0}])
 
     for alcohol in ALCOHOLS:
-        barrel_sealed_recipe(rm, 'aged_' + alcohol, 'Ageing ' + alcohol.capitalize(), 691200, '100 tfc:' + alcohol, '100 tfcagedalcohol:aged_' + alcohol)
-    barrel_sealed_recipe(rm, 'aged_mead', 'Ageing Mead', 691200, '100 firmalife:mead', '100 tfcagedalcohol:aged_mead', {'type': 'neoforge:mod_loaded', 'modid': 'firmalife'})
+        barrel_sealed_recipe(rm, 'aged_' + alcohol, 'Ageing ' + alcohol.capitalize(), 691200, '10000 tfc:' + alcohol, '10000 tfcagedalcohol:aged_' + alcohol)
+    barrel_sealed_recipe(rm, 'aged_mead', 'Ageing Mead', 691200, '10000 firmalife:mead', '10000 tfcagedalcohol:aged_mead', {'type': 'neoforge:mod_loaded', 'modid': 'firmalife'})
 
     rm.fluid_tag('tfc:drinkables', '#tfcagedalcohol:aged_alcohols')
     rm.block_tag('minecraft:replaceable', '#tfcagedalcohol:all_fluids')
