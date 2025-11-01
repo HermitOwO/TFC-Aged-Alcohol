@@ -3,11 +3,11 @@
   "type": "tfc:barrel_sealed",
   "input_fluid": {
     "fluid": "tfc:beer",
-    "amount": 100
+    "amount": 10000
   },
   "output_fluid": {
     "id": "tfcagedalcohol:aged_beer",
-    "amount": 100
+    "amount": 10000
   },
   "duration": 691200
 }
