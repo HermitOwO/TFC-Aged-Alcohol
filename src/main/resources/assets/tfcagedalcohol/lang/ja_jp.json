@@ -24,6 +24,9 @@
   "block.tfcagedalcohol.fluid.aged_rye_whiskey": "熟成したライウイスキー",
   "item.tfcagedalcohol.bucket.aged_rye_whiskey": "熟成したライウイスキー入りバケツ",
   "fluid.tfcagedalcohol.aged_rye_whiskey": "熟成したライウイスキー",
+  "block.tfcagedalcohol.fluid.aged_mead": "熟成した蜂蜜酒",
+  "item.tfcagedalcohol.bucket.aged_mead": "熟成した蜂蜜酒入りバケツ",
+  "fluid.tfcagedalcohol.aged_mead": "熟成した蜂蜜酒",
   "tfc.recipe.barrel.tfcagedalcohol.barrel.aged_beer": "ビールの熟成",
   "tfc.recipe.barrel.tfcagedalcohol.barrel.aged_cider": "リンゴ酒の熟成",
   "tfc.recipe.barrel.tfcagedalcohol.barrel.aged_rum": "ラム酒の熟成",
@@ -32,5 +35,6 @@
   "tfc.recipe.barrel.tfcagedalcohol.barrel.aged_whiskey": "ウイスキーの熟成",
   "tfc.recipe.barrel.tfcagedalcohol.barrel.aged_corn_whiskey": "コーンウイスキーの熟成",
   "tfc.recipe.barrel.tfcagedalcohol.barrel.aged_rye_whiskey": "ライウイスキーの熟成",
+  "tfc.recipe.barrel.tfcagedalcohol.barrel.aged_mead": "蜂蜜酒の熟成",
   "tfcagedalcohol.creative_tab.main": "TFC Aged Alcohol"
 }
